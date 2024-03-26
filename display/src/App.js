@@ -37,6 +37,7 @@ function App() {
         <input
           value={data.firstName}
           name="firstName"
+          type="text"
           onChange={(e) => handleChange(e)}
           required
         />
@@ -45,6 +46,7 @@ function App() {
         <input
           value={data.lastName}
           name="lastName"
+          type="text"
           onChange={(e) => handleChange(e)}
           required
         />
