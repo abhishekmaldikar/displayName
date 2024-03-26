@@ -7,10 +7,7 @@ function App() {
     lastName: "",
   });
 
-  const [dis , setDis] = useState({
-    firstName: "",
-    lastName: "",
-  })
+  const [fullName , setFullName] = useState("")
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -22,11 +19,7 @@ function App() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    
-    setDis({
-      firstName: data.firstName,
-      lastName: data.lastName,
-    })
+    setFullName(`${data.firstName} ${data.lastName}`)
   }
   return (
     <div className="App">
@@ -55,7 +48,7 @@ function App() {
         <br />
 
         <p>
-          Full Name: {dis.firstName} {dis.lastName}
+          Full Name: {fullName}
         </p>
       </form>
     </div>
