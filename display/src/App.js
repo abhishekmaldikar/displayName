@@ -1,58 +1,49 @@
 import React, { useState } from "react";
-import "./App.css";
 
-function App() {
-  const [data, setData] = useState({
-    firstName: "",
-    lastName: "",
-  });
+const App = () => {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [fullName, setFullName] = useState("");
 
-  const [fullName , setFullName] = useState("")
-
-  function handleChange(e) {
-    const { name, value } = e.target;
-    setData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  }
-
-  function handleSubmit(e) {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setFullName(`${data.firstName} ${data.lastName}`)
-  }
-  return (
-    <div className="App">
-      <h1>Full Name Display</h1>
+    if (firstName && lastName) {
+      setFullName(`Full Name: ${firstName} ${lastName}`);
+    } else {
+      setFullName("");
+    }
+  };
 
-      <form onSubmit={(e) => handleSubmit(e)}>
-        <p style={{ display: "inline" }}>First Name:</p>
-        <input
-          value={data.firstName}
-          name="firstName"
-          type="text"
-          onChange={(e) => handleChange(e)}
-          required
-        />
+  return (
+    <div>
+      <h1>Full Name Display</h1>
+      <form onSubmit={handleSubmit}>
+        <label>
+          First Name:
+          <input
+            type="text"
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+            required
+          />
+        </label>
         <br />
-        <p style={{ display: "inline" }}>Last Name:</p>
-        <input
-          value={data.lastName}
-          name="lastName"
-          type="text"
-          onChange={(e) => handleChange(e)}
-          required
-        />
+        <label>
+          Last Name:
+          <input
+            type="text"
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
+            required
+          />
+        </label>
         <br />
         <button type="submit">Submit</button>
-        <br />
-
-        <p>
-          Full Name: {fullName}
-        </p>
       </form>
+      {fullName && <p>{fullName}</p>}
     </div>
   );
-}
+};
 
 export default App;
+
